@@ -3,5 +3,7 @@ __pycache__/
 *.pyc 
 data/raw/*
 data/processed/*
+data/feature_store/*
 !data/raw/.gitkeep
 !data/processed/.gitkeep
+!data/feature_store/.gitkeep

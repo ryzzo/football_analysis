@@ -18,3 +18,10 @@ services:
     volumes:
       - ./data:/app/data
       - ./feature_repo:/app/feature_repo
+
+  build_match_training:
+    build: .
+    command: ["python", "-m", "pipelines.build_match_training"]
+    volumes:
+      - ./data:/app/data
+      - ./feature_repo:/app/feature_repo
