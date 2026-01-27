@@ -10,7 +10,7 @@ OUT = Path("data/processed/match_training.parquet")
 FEATURES = [
     "team_form:points_last_5",
     "team_form:gf_last_5",
-    "team_form:fa_last_5",
+    "team_form:ga_last_5",
 ]
 
 def outcome_label(home_goals, away_goals):
