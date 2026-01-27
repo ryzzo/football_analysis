@@ -1,0 +1,12 @@
+project: football_analysis
+registry: /app/data/feature_store/registry.db
+provider: local
+
+offline_store:
+  type: file
+
+online_store:
+  type: sqlite
+  path: /app/data/feature_store/online.db
+  
+entity_key_serialization_version: 2

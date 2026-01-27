@@ -5,3 +5,16 @@ services:
     command: ["python", "-m", "pipelines.ingest_matches"]
     volumes:
       - ./data:/app/data
+
+  build_team_events:
+    build: .
+    command: ["python", "-m", "pipelines.build_team_events"]
+    volumes:
+      - ./data:/app/data
+
+  feast_apply:
+    build: .
+    command: ["feast", "-c", "feature_repo", "apply"]
+    volumes:
+      - ./data:/app/data
+      - ./feature_repo:/app/feature_repo
