@@ -25,3 +25,27 @@ services:
     volumes:
       - ./data:/app/data
       - ./feature_repo:/app/feature_repo
+
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:v2.9.2
+    command: >
+      mlflow server
+      --backend-store-uri sqlite:////mlflow/runs.db
+      --default-artifact-root /mlflow/artifacts
+      --host 0.0.0.0
+      --port 5000
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./data/mlflow:/mlflow
+
+  train:
+    build: .
+    environment:
+      - MLFLOW_TRACKING_URI=http://host.docker.internal:5000
+    command: ["python", "-m", "training.train"]
+    volumes:
+      - ./data:/app/data
+      - ./models:/app/models
+    depends_on:
+      - mlflow
